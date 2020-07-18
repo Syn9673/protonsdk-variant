@@ -1,6 +1,6 @@
 {
   "name": "protonsdk-variant",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The ProtonSDK Variant code done in Javascript to create or decode packets for games/servers that use ProtonSDK",
   "main": "src/index.js",
   "scripts": {
@@ -10,7 +10,7 @@
   "license": "MIT",
   "typings": "src/index.ts",
   "repository": {
-    "url": "https://github.com/Alexander9673/Variant"
+    "url": "https://github.com/Alexander9673/protonsdk-variant"
   },
-  "homepage": "https://github.com/Alexander9673/Variant/blob/master/README.md"
+  "homepage": "https://github.com/Alexander9673/protonsdk-variant/blob/master/README.md"
 }

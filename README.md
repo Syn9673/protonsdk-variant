@@ -1,4 +1,4 @@
-# VarList
+# Variant
  The ProtonSDK Variant code done in Javascript to create or decode packets for games/servers that use ProtonSDK
 
 ## Examples
