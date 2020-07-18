@@ -1,0 +1,16 @@
+{
+  "name": "variant",
+  "version": "1.0.0",
+  "description": "The ProtonSDK Variant code done in Javascript to create packets for games/servers that use ProtonSDK",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alexander9673",
+  "license": "MIT",
+  "typings": "src/index.ts",
+  "repository": {
+    "url": "https://github.com/Alexander9673/Variant"
+  },
+  "homepage": "https://github.com/Alexander9673/Variant/blob/master/README.md"
+}
