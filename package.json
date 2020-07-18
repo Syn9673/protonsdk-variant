@@ -1,5 +1,5 @@
 {
-  "name": "variant",
+  "name": "protonsdk-variant",
   "version": "1.0.0",
   "description": "The ProtonSDK Variant code done in Javascript to create or decode packets for games/servers that use ProtonSDK",
   "main": "src/index.js",

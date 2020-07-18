@@ -4,7 +4,7 @@
 ## Examples
  Creating a Variant Packet  
 ```js
-const { Variant } = require("variant");
+const { Variant } = require("protonsdk-variant");
 const varlist = new Variant(); // create a new instance of Variant class
 
 const packetData = varlist.call("OnConsoleMessage", "Hello"); // creates a packet and returns the data
@@ -43,7 +43,7 @@ const packetData2 = varlist.call(
 
  Converting a Buffer to Variant Class  
 ```js
-const { Variant } = require("variant");
+const { Variant } = require("protonsdk-variant");
 const varlist = Variant.from("0400000001000000ffffffff000000000800000000000000000000000000000000000000000000000000000000000000000000000000000000000000020002100000004f6e436f6e736f6c654d65737361676501020500000048656c6c6f"); // returns a new instance of the Variant class containing the decoded data
 
 /* Packet Data: 
