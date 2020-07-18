@@ -7,7 +7,7 @@
 const { Variant } = require("variant");
 const varlist = new Variant(); // create a new instance of Variant class
 
-const packetData = varlist.call("OnConsoleMessage", "Hello"); // creates a packet and returns it along with the new data
+const packetData = varlist.call("OnConsoleMessage", "Hello"); // creates a packet and returns the data
 /* Packet Data:
 {
   type: 4,
@@ -18,6 +18,26 @@ const packetData = varlist.call("OnConsoleMessage", "Hello"); // creates a packe
   argsCount: 2,
   args: [ 'OnConsoleMessage', 'Hello' ],
   packet: <Buffer 04 00 00 00 01 00 00 00 ff ff ff ff 00 00 00 00 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ... 44 more bytes>
+}*/
+
+const packetData2 = varlist.call(
+    {
+        netID: 1,
+        delay: 1000
+    },
+    "OnConsoleMessage",
+    "Hello"
+); // creates a packet with netID and delay options and returns the data
+/* Packet Data:
+{
+  type: 4,
+  packetType: 1,
+  netID: 1,
+  state: 8,
+  delay: 1000,
+  argsCount: 2,
+  args: [ 'OnConsoleMessage', 'Hello' ],
+  packet: <Buffer 04 00 00 00 01 00 00 00 01 00 00 00 00 00 00 00 08 00 00 00 00 00 00 00 e8 03 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ... 44 more bytes>
 }*/
 ```  
 
