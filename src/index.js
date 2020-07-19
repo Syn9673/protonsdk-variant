@@ -53,6 +53,44 @@ class Variant {
                     pos += 5;
                     break;
                 }
+
+                case 0x1: { // 1 float
+                    pos++;
+                    args.push([packet.readFloatLE(pos)]);
+
+                    pos += 4;
+                    break;
+                }
+
+                case 0x3: { // 2 floats
+                    pos++;
+                    let arr = [];
+
+                    arr.push(packet.readFloatLE(pos));
+                    pos += 4;
+                    arr.push(packet.readFloatLE(pos));
+
+                    args.push(arr);
+                    
+                    pos += 4;
+                    break;
+                }
+
+                case 0x4: { // 3 floats
+                    pos++;
+                    let arr = [];
+
+                    arr.push(packet.readFloatLE(pos));
+                    pos += 4;
+                    arr.push(packet.readFloatLE(pos));
+                    pos += 4;
+                    arr.push(packet.readFloatLE(pos));
+
+                    args.push(arr);
+
+                    pos += 4;
+                    break;
+                }
             }
         }
     
@@ -79,6 +117,8 @@ class Variant {
                 allocate += args[i].length + 6;
             else if (typeof args[i] === "number")
                 allocate += 6;
+            else if (typeof args[i] === "object" && Array.isArray(args[i]))
+                allocate += (4 * args[i].length) + 2;
         }
 
         const packet = Buffer.alloc(allocate);
@@ -110,11 +150,41 @@ class Variant {
                 }
 
                 case "number": {
+                    if (!Number.isInteger(args[i]))
+                        break;
+
                     pos++;
                     packet[pos] = args[i] < 0 ? 0x9 : 0x5;
 
                     pos++;
                     packet[args[i] < 0 ? "writeInt32LE" : "writeUInt32LE"](args[i], pos);
+
+                    pos += 4;
+                    break;
+                }
+
+                case "object": {
+                    if (!Array.isArray(args[i]))
+                        break;
+
+                    pos++;
+
+                    if (args[i].length === 1)
+                        packet[pos] = 0x1;
+                    else if (args[i].length === 2)
+                        packet[pos] = 0x3;
+                    else if (args[i].length === 3)
+                        packet[pos] = 0x4;
+
+                    if (!packet[pos])
+                        break;
+
+                    pos++;
+                    
+                    for (let c = 0; c < args[i].length; c++) {
+                        packet.writeFloatLE(args[i][c], pos);
+                        pos += 4;
+                    }
 
                     pos += 4;
                     break;
