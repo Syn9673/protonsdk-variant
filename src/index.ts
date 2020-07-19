@@ -54,4 +54,4 @@ declare class Variant {
     public call(options?: CallOptions | string, ...args: (string|number|number[])[]): PacketData
 }
 
-export { Variant };
+export { Variant, PacketData, CallOptions };

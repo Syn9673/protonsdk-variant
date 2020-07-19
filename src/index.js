@@ -57,38 +57,41 @@ class Variant {
                 case 0x1: { // 1 float
                     pos++;
                     args.push([packet.readFloatLE(pos)]);
+                    pos += 5;
 
-                    pos += 4;
                     break;
                 }
 
                 case 0x3: { // 2 floats
+                    const arr = [];
                     pos++;
-                    let arr = [];
 
                     arr.push(packet.readFloatLE(pos));
                     pos += 4;
                     arr.push(packet.readFloatLE(pos));
+                    pos += 4;
 
                     args.push(arr);
-                    
-                    pos += 4;
+
+                    pos++;
                     break;
                 }
 
                 case 0x4: { // 3 floats
+                    const arr = [];
                     pos++;
-                    let arr = [];
 
                     arr.push(packet.readFloatLE(pos));
                     pos += 4;
                     arr.push(packet.readFloatLE(pos));
                     pos += 4;
                     arr.push(packet.readFloatLE(pos));
+                    pos += 4;
 
                     args.push(arr);
 
-                    pos += 4;
+                    pos++;
+                    
                     break;
                 }
             }
@@ -185,8 +188,6 @@ class Variant {
                         packet.writeFloatLE(args[i][c], pos);
                         pos += 4;
                     }
-
-                    pos += 4;
                     break;
                 }
             }
