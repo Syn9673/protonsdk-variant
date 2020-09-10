@@ -127,9 +127,9 @@ class Variant {
         const packet = Buffer.alloc(allocate);
         packet.writeUInt32LE(4); // type
         packet.writeUInt32LE(1, 4); // packet type
-        packet.writeInt32LE(options.netID ?? -1, 8);
+        packet.writeInt32LE(options.netID || -1, 8);
         packet.writeUInt32LE(8, 16);
-        packet.writeUInt32LE(options.delay ?? 0, 24);
+        packet.writeUInt32LE(options.delay || 0, 24);
 
         packet[60] = args.length;
     
@@ -196,9 +196,9 @@ class Variant {
         return {
             type: 4,
             packetType: 1,
-            netID: options.netID ?? -1,
+            netID: options.netID || -1,
             state: 8,
-            delay: options.delay ?? 0,
+            delay: options.delay || 0,
             argsCount: args.length,
             args,
             packet
